@@ -41,7 +41,7 @@ ADD configuration/applicationContext-externalAuth-preAuth.xml /usr/src/jasperrep
 ADD configuration/applicationContext.xml /usr/src/jasperreports-server/configuration/applicationContext.xml
 
 RUN mkdir  /usr/src/jasperreports-server/fonts
-RUN mkdir -R 7777 /usr/src/jasperreports-server/fonts
+RUN chmod -R 7777 /usr/src/jasperreports-server/fonts
 ADD fonts/myCipher.jar /usr/src/jasperreports-server/fonts/myCipher.jar
 ADD fonts/THSarabun.jar /usr/src/jasperreports-server/fonts/THSarabun.jar
 # VOLUME ["/usr/local/tomcat/webapps/ROOT/WEB-INF"]
