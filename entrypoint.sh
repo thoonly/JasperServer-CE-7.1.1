@@ -49,14 +49,14 @@ if [ -f "/.do_deploy_jasperserver" ]; then
       ./js-import.sh --input-zip $f
     done
 
-    IMPORT_FILES=/jasperserver-import/font/*.jar
+    IMPORT_FILES=/usr/src/jasperreports-server/fonts/*.jar
     for f in $IMPORT_FILES
     do
       echo "Importing font $f..."
       cp -rfv $f /usr/local/tomcat/webapps/ROOT/WEB-INF/lib
     done
 
-    IMPORT_FILES=/jasperserver-import/config/*.xml
+    IMPORT_FILES=/usr/src/jasperreports-server/configuration/*.xml
     for f in $IMPORT_FILES
     do
       echo "Importing config $f..."

@@ -35,11 +35,17 @@ RUN chmod a+x /entrypoint.sh && \
 
 # This volume allows JasperServer export zip files to be automatically imported when bootstrapping
 VOLUME ["/jasperserver-import"]
-ADD jasperserver-import/config/applicationContext-externalAuth-preAuth.xml /jasperserver-import/config/applicationContext-externalAuth-preAuth.xml
-ADD jasperserver-import/config/applicationContext.xml /jasperserver-import/config/applicationContext.xml
-ADD jasperserver-import/font/myCipher.jar /jasperserver-import/font/myCipher.jar
-ADD jasperserver-import/font/THSarabun.jar /jasperserver-import/font/THSarabun.jar
+RUN mkdir  /usr/src/jasperreports-server/configuration
+RUN chmod -R 777 /usr/src/jasperreports-server/configuration
+ADD configuration/applicationContext-externalAuth-preAuth.xml /usr/src/jasperreports-server/configuration/applicationContext-externalAuth-preAuth.xml
+ADD configuration/applicationContext.xml /usr/src/jasperreports-server/configuration/applicationContext.xml
+
+RUN mkdir  /usr/src/jasperreports-server/fonts
+RUN mkdir -R 7777 /usr/src/jasperreports-server/fonts
+ADD fonts/myCipher.jar /usr/src/jasperreports-server/fonts/myCipher.jar
+ADD fonts/THSarabun.jar /usr/src/jasperreports-server/fonts/THSarabun.jar
 # VOLUME ["/usr/local/tomcat/webapps/ROOT/WEB-INF"]
+ 
 
 # By default, JasperReports Server only comes with Postgres & MariaDB drivers
 # Copy over other JBDC drivers the deploy-jdbc-jar ant task will put it in right location
