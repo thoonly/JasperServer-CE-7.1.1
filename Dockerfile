@@ -35,6 +35,10 @@ RUN chmod a+x /entrypoint.sh && \
 
 # This volume allows JasperServer export zip files to be automatically imported when bootstrapping
 VOLUME ["/jasperserver-import"]
+ADD jasperserver-import/config/applicationContext-externalAuth-preAuth.xml /jasperserver-import/config/applicationContext-externalAuth-preAuth.xml
+ADD jasperserver-import/config/applicationContext.xml /jasperserver-import/config/applicationContext.xml
+ADD jasperserver-import/font/myCipher.jar /jasperserver-import/font/myCipher.jar
+ADD jasperserver-import/font/THSarabun.jar /jasperserver-import/font/THSarabun.jar
 # VOLUME ["/usr/local/tomcat/webapps/ROOT/WEB-INF"]
 
 # By default, JasperReports Server only comes with Postgres & MariaDB drivers
