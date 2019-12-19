@@ -19,7 +19,7 @@ if [ -f "/.do_deploy_jasperserver" ]; then
     sed -i -e "s|^dbHost.*$|dbHost=$DB_HOST|g; s|^dbPort.*$|dbPort=$DB_PORT|g; s|^dbUsername.*$|dbUsername=$DB_USER|g; s|^dbPassword.*$|dbPassword=$DB_PASSWORD|g" default_master.properties
     
     # rename the application war so that it can be served as the default tomcat web application
-    sed -i -e "s|^# webAppNameCE.*$|webAppNameCE = ROOT|g" default_master.properties
+    # sed -i -e "s|^# webAppNameCE.*$|webAppNameCE = ROOT|g" default_master.properties
 
    
     # run the minimum bootstrap script to initial the JasperServer
@@ -34,8 +34,8 @@ if [ -f "/.do_deploy_jasperserver" ]; then
     # Add WebServiceDataSource plugin
     wget https://community.jaspersoft.com/sites/default/files/releases/jaspersoft_webserviceds_v1.5.zip -O /tmp/jasper.zip && \
     unzip /tmp/jasper.zip -d /tmp/ && \
-    cp -rfv /tmp/JRS/WEB-INF/* /usr/local/tomcat/webapps/ROOT/WEB-INF/ && \
-    sed -i 's/queryLanguagesPro/queryLanguagesCe/g' /usr/local/tomcat/webapps/ROOT/WEB-INF/applicationContext-WebServiceDataSource.xml && \
+    cp -rfv /tmp/JRS/WEB-INF/* /usr/local/tomcat/webapps/jasperserver/WEB-INF/ && \
+    sed -i 's/queryLanguagesPro/queryLanguagesCe/g' /usr/local/tomcat/webapps/jasperserver/WEB-INF/applicationContext-WebServiceDataSource.xml && \
     rm -rf /tmp/*
 
     # import any export zip files from another JasperServer
@@ -53,20 +53,20 @@ if [ -f "/.do_deploy_jasperserver" ]; then
     for f in $IMPORT_FILES
     do
       echo "Importing font $f..."
-      cp -rfv $f /usr/local/tomcat/webapps/ROOT/WEB-INF/lib
+      cp -rfv $f /usr/local/tomcat/webapps/jasperserver/WEB-INF/lib
     done
 
     IMPORT_FILES=/usr/src/jasperreports-server/configuration/*.xml
     for f in $IMPORT_FILES
     do
       echo "Importing config $f..."
-      cp -rfv $f /usr/local/tomcat/webapps/ROOT/WEB-INF
+      cp -rfv $f /usr/local/tomcat/webapps/jasperserver/WEB-INF
     done
   
     popd
 fi
 
-# sed -i "s|encryption.on=false|encryption.on=true|g" /usr/local/tomcat/webapps/ROOT/WEB-INF/classes/esapi/security-config.properties
+# sed -i "s|encryption.on=false|encryption.on=true|g" /usr/local/tomcat/webapps/jasperserver/WEB-INF/classes/esapi/security-config.properties
 
 # run Tomcat to start JasperServer webapp
 catalina.sh run
