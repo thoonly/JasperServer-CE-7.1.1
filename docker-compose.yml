@@ -25,7 +25,7 @@ services:
 
   jasperserver:
     # build: .
-    image: thoonly/jasperserver-ce:latest
+    image: thoonly/jasperserver-ce-711
     container_name: jasperserver
     ports:
       - "8890:8080"
@@ -40,6 +40,7 @@ services:
     volumes:
       # Relative path on the host/volume on container
       - ./jasperserver-import:/jasperserver-import
+    restart: always
 #    depends_on:
 #      - mysql
 #    deploy:
