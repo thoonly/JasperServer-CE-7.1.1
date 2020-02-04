@@ -4,7 +4,7 @@ services:
 
   mariadb:
     image: mariadb:latest
-    container_name: mariadb_jasperserver
+    container_name: mariadb
     # Uncomment if you want access to DB access from Host
     ports:
        - "3306:3306"
@@ -24,7 +24,7 @@ services:
 #        window: 120s
 
   jasperserver:
-    # build: .
+    build: .
     image: thoonly/jasperserver-ce-711
     container_name: jasperserver
     ports:
@@ -33,7 +33,7 @@ services:
       - mariadb_default
     environment:
       - DB_TYPE=mysql
-      - DB_HOST=mariadb_jasperserver
+      - DB_HOST=mariadb
       - DB_PORT=3306
       - DB_USER=root
       - DB_PASSWORD=mysql

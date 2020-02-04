@@ -44,6 +44,7 @@ RUN mkdir  /usr/src/jasperreports-server/fonts
 RUN chmod -R 7777 /usr/src/jasperreports-server/fonts
 ADD fonts/myCipher.jar /usr/src/jasperreports-server/fonts/myCipher.jar
 ADD fonts/THSarabun.jar /usr/src/jasperreports-server/fonts/THSarabun.jar
+ADD fonts/THSarabunPSK.jar /usr/src/jasperreports-server/fonts/THSarabunPSK.jar
 # VOLUME ["/usr/local/tomcat/webapps/ROOT/WEB-INF"]
  
 
@@ -53,7 +54,7 @@ ADD drivers/db2jcc4-no-pdq-in-manifest.jar /usr/src/jasperreports-server/buildom
 ADD drivers/mysql-connector-java-5.1.44-bin.jar /usr/src/jasperreports-server/buildomatic/conf_source/db/app-srv-jdbc-drivers/mysql-connector-java-5.1.44-bin.jar
 
 # Copy web.xml with cross-domain enable
-ADD web.xml /usr/local/tomcat/conf/
+# ADD web.xml /usr/local/tomcat/conf/
 
 # Use the minimum recommended settings to start-up
 # as per http://community.jaspersoft.com/documentation/jasperreports-server-install-guide/v561/setting-jvm-options-application-servers
