@@ -39,15 +39,20 @@ RUN mkdir  /usr/src/jasperreports-server/configuration
 RUN chmod -R 777 /usr/src/jasperreports-server/configuration
 ADD configuration/applicationContext-externalAuth-preAuth.xml /usr/src/jasperreports-server/configuration/applicationContext-externalAuth-preAuth.xml
 ADD configuration/applicationContext.xml /usr/src/jasperreports-server/configuration/applicationContext.xml
+# ADD configuration/applicationContext-security-web.xml  /usr/src/jasperreports-server/configuration/applicationContext-security-web.xml
 
 RUN mkdir  /usr/src/jasperreports-server/fonts
 RUN chmod -R 7777 /usr/src/jasperreports-server/fonts
 ADD fonts/myCipher.jar /usr/src/jasperreports-server/fonts/myCipher.jar
 ADD fonts/THSarabun.jar /usr/src/jasperreports-server/fonts/THSarabun.jar
 ADD fonts/THSarabunPSK.jar /usr/src/jasperreports-server/fonts/THSarabunPSK.jar
+ADD fonts/htmlcomponent.jar /usr/src/jasperreports-server/fonts/htmlcomponent.jar
 # VOLUME ["/usr/local/tomcat/webapps/ROOT/WEB-INF"]
- 
 
+RUN mkdir  /usr/src/jasperreports-server/images
+RUN chmod -R 7777 /usr/src/jasperreports-server/images
+ADD images/saranros-logo.png /usr/src/jasperreports-server/images/saranros-logo.png
+ 
 # By default, JasperReports Server only comes with Postgres & MariaDB drivers
 # Copy over other JBDC drivers the deploy-jdbc-jar ant task will put it in right location
 ADD drivers/db2jcc4-no-pdq-in-manifest.jar /usr/src/jasperreports-server/buildomatic/conf_source/db/app-srv-jdbc-drivers/db2jcc4.jar

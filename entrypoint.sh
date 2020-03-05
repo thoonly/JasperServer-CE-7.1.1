@@ -62,6 +62,13 @@ if [ -f "/.do_deploy_jasperserver" ]; then
       echo "Importing config $f..."
       cp -rfv $f /usr/local/tomcat/webapps/jasperserver/WEB-INF
     done
+
+    IMPORT_FILES=/usr/src/jasperreports-server/images/*.*
+    for f in $IMPORT_FILES
+    do
+      echo "Importing images $f..."
+      cp -rfv $f /usr/local/tomcat/webapps/ROOT
+    done
   
     popd
 fi
