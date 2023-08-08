@@ -1,20 +1,20 @@
 version: '3'
 
 services:
-  mariadb:
-    image: mariadb:10.2
-    container_name: mariadb
+#   mariadb:
+#     image: mariadb:10.2
+#     container_name: mariadb
 
-    # Uncomment if you want access to DB access from Host mariadb://root:1234@127.0.0.1?statusColor=F8F8F8&enviroment=local&name=localhost&tLSMode=0&usePrivateKey=false&safeModeLevel=0&advancedSafeModeLevel=0
-    ports:
-       - "3306:3306"
-#    networks:
-#      - mariadb_default
-    environment:
-      - MYSQL_ROOT_PASSWORD=mysql
-    volumes:
-      - ./datadir:/var/lib/mysql
-    restart: always
+#     # Uncomment if you want access to DB access from Host mariadb://root:1234@127.0.0.1?statusColor=F8F8F8&enviroment=local&name=localhost&tLSMode=0&usePrivateKey=false&safeModeLevel=0&advancedSafeModeLevel=0
+#     ports:
+#        - "3306:3306"
+# #    networks:
+# #      - mariadb_default
+#     environment:
+#       - MYSQL_ROOT_PASSWORD=mysql
+#     volumes:
+#       - ./datadir:/var/lib/mysql
+#     restart: always
 #    deploy:
 #      mode: replicated
 #      replicas: 1
@@ -25,13 +25,13 @@ services:
 #        window: 120s
 
   jasperserver:
-    # build: .
+    build: .
     image: thoonly/jasperserver-ce-711
     container_name: jasperserver
     ports:
-      - "8890:8080"
-#    networks:
-#      - mariadb_default
+      - "8891:8080"
+    networks:
+      - mariadb_default
     environment:
       - DB_TYPE=mysql
       - DB_HOST=mariadb
@@ -42,8 +42,8 @@ services:
       # Relative path on the host/volume on container
       - ./jasperserver-import:/jasperserver-import
     restart: always
-    depends_on:
-      - mariadb
+    # depends_on:
+    #   - mariadb
 #    deploy:
 #      mode: replicated
 #      replicas: 1
