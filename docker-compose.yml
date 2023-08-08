@@ -37,7 +37,7 @@ services:
       - DB_HOST=mariadb
       - DB_PORT=3306
       - DB_USER=root
-      - DB_PASSWORD=mysql
+      - DB_PASSWORD=playwork
     volumes:
       # Relative path on the host/volume on container
       - ./jasperserver-import:/jasperserver-import
