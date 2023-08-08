@@ -19,6 +19,8 @@ RUN unzip /tmp/jasperserver.zip -d /usr/src/ && \
    mv /usr/src/jasperreports-server-cp-$JASPERSERVER_VERSION-bin /usr/src/jasperreports-server && \
    rm -r /usr/src/jasperreports-server/samples
 
+ADD jaspersoft_webserviceds_v1.5.zip /tmp/jasper.zip
+
 # Used to wait for the database to start before connecting to it
 # This script is from https://github.com/vishnubob/wait-for-it
 # as recommended by https://docs.docker.com/compose/startup-order/
