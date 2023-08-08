@@ -40,7 +40,6 @@ RUN mkdir  /usr/src/jasperreports-server/configuration
 RUN chmod -R 777 /usr/src/jasperreports-server/configuration
 ADD configuration/applicationContext-externalAuth-preAuth.xml /usr/src/jasperreports-server/configuration/applicationContext-externalAuth-preAuth.xml
 ADD configuration/applicationContext.xml /usr/src/jasperreports-server/configuration/applicationContext.xml
-ADD configuration/web.xml /usr/src/jasperreports-server/configuration/web.xml
 # ADD configuration/applicationContext-security-web.xml  /usr/src/jasperreports-server/configuration/applicationContext-security-web.xml
 
 RUN mkdir  /usr/src/jasperreports-server/fonts
@@ -61,7 +60,7 @@ ADD drivers/db2jcc4-no-pdq-in-manifest.jar /usr/src/jasperreports-server/buildom
 ADD drivers/mysql-connector-java-5.1.44-bin.jar /usr/src/jasperreports-server/buildomatic/conf_source/db/app-srv-jdbc-drivers/mysql-connector-java-5.1.44-bin.jar
 
 # Copy web.xml with cross-domain enable
-ADD web.xml /usr/local/tomcat/conf/
+# ADD web.xml /usr/local/tomcat/conf/
 
 # Use the minimum recommended settings to start-up
 # as per http://community.jaspersoft.com/documentation/jasperreports-server-install-guide/v561/setting-jvm-options-application-servers
