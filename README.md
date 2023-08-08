@@ -57,3 +57,5 @@ This repo is setup to trigger an automated build of the image [retriever/jaserps
 To make a new official version of the image, just push a git Tag using the naming convention `major.minor.iteration` where:
 * major and minor line up with the included version of jasperserver 
 * iteration is incremented each time a change is done that isn't an upgrade of the included jasperserver version
+
+** ในกรณีที่มีการ clone repository ต้องทำการดาวน์โหลดไฟล์มาไว้ใน root directory wget "https://sourceforge.net/projects/jasperserver/files/JasperServer/JasperReports%20Server%20Community%20Edition%207.1.1/TIB_js-jrs-cp_7.1.1_bin.zip/download" -O /TIB_js-jrs-cp_7.1.1_bin.zip
