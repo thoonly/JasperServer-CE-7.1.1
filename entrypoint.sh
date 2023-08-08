@@ -67,7 +67,7 @@ if [ -f "/.do_deploy_jasperserver" ]; then
     for f in $IMPORT_FILES
     do
       echo "Importing images $f..."
-      cp -rfv $f /usr/local/tomcat/webapps/ROOT
+      cp -rfv $f /usr/local/tomcat/webapps/jasperserver/
     done
   
     popd

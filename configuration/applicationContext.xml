@@ -1493,8 +1493,8 @@
                         level to be overwritten by that at the org/user levels.
                     </description>
                     <list>
-                        <value>domainWhitelist1</value>
-                        <value>domainWhitelist2</value>
+                        <value>mcneto.com</value>
+                        <value>saranros.com</value>
                     </list>
                 </property>
             </bean>
