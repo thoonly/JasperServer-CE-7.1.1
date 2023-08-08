@@ -114,7 +114,7 @@
                 <prop key="hibernate.generate_statistics">true</prop>
                 <!-- uncomment property below if a default schema should be specified such as for DB2 -->
                 <!-- <prop key="hibernate.default_schema">${metadata.hibernate.default_schema}</prop> -->
-                
+
                 <!-- Cache Configurations -->
                 <prop key="hibernate.cache.region.factory_class">${hibernate.cache.region.factory_class}</prop>
                 <prop key="net.sf.ehcache.configurationResourceName">/ehcache_hibernate.xml</prop>
@@ -125,7 +125,7 @@
                 <prop key="hibernate.cache.use_structured_entries">true</prop>
             </props>
         </property>
-        <!-- 
+        <!--
             configure caching for each persistent class
             this is equivalent to adding <cache> element to each mapping file,
             but centralizing this is probably preferable
@@ -181,7 +181,7 @@
         <property name="autodetect" value="true"/>
     </bean>
     -->
-    
+
     <bean id="hibernateCompositeDeleteListener" class="com.jaspersoft.jasperserver.api.metadata.common.service.impl.HibernateCompositeDeleteListener">
         <property name="listeners" ref="${bean.hibernateCompositeDeleteListenerListeners}" />
     </bean>
@@ -202,7 +202,7 @@
             </list>
         </constructor-arg>
     </bean>
-    
+
     <bean id="hibernateCompositeSaveOrUpdateListener" class="com.jaspersoft.jasperserver.api.metadata.common.service.impl.HibernateCompositeSaveOrUpdateListener">
         <property name="listeners" ref="${bean.hibernateCompositeSaveOrUpdateListeners}" />
     </bean>
@@ -240,10 +240,10 @@
     <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
-    
+
     <bean id="objectFactory" class="com.jaspersoft.jasperserver.api.common.service.impl.ObjectFactoryImpl"/>
-    
-    
+
+
     <bean id="mappingResourceFactory" class="com.jaspersoft.jasperserver.api.metadata.common.service.impl.ResourceFactoryImpl">
         <property name="objectFactory" ref="objectFactory"/>
         <property name="implementationClassMappings">
@@ -391,7 +391,7 @@
                 <entry key="com.jaspersoft.jasperserver.api.metadata.olap.domain.MondrianXMLADefinition"
                     value="com.jaspersoft.jasperserver.api.metadata.olap.domain.impl.hibernate.RepoMondrianXMLADefinition"/>
                 <entry key="com.jaspersoft.jasperserver.api.logging.access.domain.AccessEvent"
-                       value="com.jaspersoft.jasperserver.api.logging.access.domain.hibernate.RepoAccessEvent"/>                                
+                       value="com.jaspersoft.jasperserver.api.logging.access.domain.hibernate.RepoAccessEvent"/>
             </map>
         </property>
     </bean>
@@ -436,21 +436,21 @@
             </list>
         </constructor-arg>
     </bean>
-    
+
     <bean id="validatorMappings" class="com.jaspersoft.jasperserver.api.common.service.impl.SimpleClassMappObjectFactory">
         <property name="mappings">
             <map>
-                <entry key="com.jaspersoft.jasperserver.api.metadata.common.domain.Resource" 
+                <entry key="com.jaspersoft.jasperserver.api.metadata.common.domain.Resource"
                     value-ref="defaultResourceValidator"/>
                 <entry key="com.jaspersoft.jasperserver.api.metadata.jasperreports.domain.VirtualReportDataSource"
                        value-ref="virtualDataSourceValidator"/>
                 <entry key="com.jaspersoft.jasperserver.api.metadata.common.domain.Folder"
                     value-ref="folderValidator"/>
-                <entry key="com.jaspersoft.jasperserver.api.metadata.jasperreports.domain.ReportUnit" 
+                <entry key="com.jaspersoft.jasperserver.api.metadata.jasperreports.domain.ReportUnit"
                     value-ref="reportUnitValidator"/>
             </map>
         </property>
-    </bean> 
+    </bean>
 
     <bean id="baseResourceValidator" class="com.jaspersoft.jasperserver.api.metadata.common.service.impl.BaseResourceValidator"
             abstract="true">
@@ -687,7 +687,7 @@
             </map>
         </property>
     </bean>
-    
+
     <bean id="beanDataSourceServiceFactory" class="com.jaspersoft.jasperserver.api.engine.jasperreports.service.impl.BeanReportDataSourceServiceFactory">
         <property name="messageSource" ref="messageSource"/>
     </bean>
@@ -839,7 +839,7 @@
 
 	<bean id="ehcacheEngineService" class="com.jaspersoft.jasperserver.api.engine.jasperreports.service.impl.EhcacheEngineService">
 		<property name="engineService" ref="engineService"/>
-		<property name="cache" ref="engineCache"/>        
+		<property name="cache" ref="engineCache"/>
         <property name="diagnosticCache" ref="diagnosticCache"/>
 	</bean>
 
@@ -847,7 +847,7 @@
 	<util:list id="engineServiceDataParameterContributors">
 		<ref bean="reportInputDataParameterContributors"/>
 	</util:list>
-	
+
 	<bean name="reportInputDataParameterContributors" class="com.jaspersoft.jasperserver.api.engine.jasperreports.service.impl.ReportInputDataParameterContributors">
 		<property name="reportLoadingService" ref="${bean.reportLoadingService}"/>
 	</bean>
@@ -882,13 +882,13 @@
         <property name="builtInParameterProviders" ref="builtInParameterProviders"/>
         <property name="reportParameterLabelKeyPrefix" value="net.sf.jasperreports.prompt.label."/>
     </bean>
-    
+
     <bean name="inputControlsInfoRoutingExtractor" class="com.jaspersoft.jasperserver.api.engine.jasperreports.service.impl.InputControlsInfoRoutingExtractor">
 
     </bean>
 
-    
-    <bean id="reportsProtectionDomainProvider" 
+
+    <bean id="reportsProtectionDomainProvider"
         class="com.jaspersoft.jasperserver.api.engine.jasperreports.util.PermissionsListProtectionDomainProvider">
         <property name="permissions">
             <list>
@@ -1083,7 +1083,7 @@
       <property name="configLocation">
          <value>${resource.root}/ehcache.xml</value>
       </property>
-    </bean>  
+    </bean>
 
     <bean id="aclCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
       <property name="cacheManager">
@@ -1203,7 +1203,7 @@
             </util:list>
         </property>
     </bean>
-    
+
     <bean class="com.jaspersoft.jasperserver.api.metadata.common.service.ResourceEventListenerProcessor" lazy-init="false">
         <property name="registry" ref="metadataRepositoryDeleteListener"/>
         <property name="listenerBeanName" value="objectPermissionsRepositoryListener"/>
@@ -1330,7 +1330,7 @@
             </map>
         </property>
     </bean>
-    
+
     <bean id="dsWrapperParamContribFactory" class="com.jaspersoft.jasperserver.api.engine.jasperreports.util.DataSourceWrapperParameterContributorFactory">
         <property name="repositoryService">
             <ref bean="${bean.repositoryService}"/>
@@ -1397,7 +1397,7 @@
     <bean id="isoCalendarFormatProvider" class="com.jaspersoft.jasperserver.war.util.IsoCalendarFormatProvider">
         <property name="lenientFormats" value="false"/>
     </bean>
-    
+
     <!-- handle file uploads using commons-fileupload
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
      -->
@@ -1437,7 +1437,7 @@
     <bean id="encodingProvider" class="com.jaspersoft.jasperserver.api.common.util.StaticCharacterEncodingProvider">
         <constructor-arg value="UTF-8"/>
     </bean>
-    
+
     <bean id="characterEncodingFilter" class="com.jaspersoft.jasperserver.war.util.CharacterEncodingFilter">
         <property name="encodingProvider" ref="encodingProvider"/>
         <property name="encodingRequestAttrName" value="com.jaspersoft.ji.characterEncoding"/>
@@ -1493,8 +1493,8 @@
                         level to be overwritten by that at the org/user levels.
                     </description>
                     <list>
-                        <value>domainWhitelist1</value>
-                        <value>domainWhitelist2</value>
+                        <value>mcneto.com</value>
+                        <value>saranros.com</value>
                     </list>
                 </property>
             </bean>
@@ -1665,9 +1665,9 @@
         <property name="maxSize" value="300"></property>
         <property name="directory" value="${java.io.tmpdir}"></property>
     </bean>
-    
+
     <!-- comment the above bean and uncomment this one to use a shared virtualizer -->
-    <!-- 
+    <!--
     <bean id="fileVirtualizerFactory" class="com.jaspersoft.jasperserver.api.engine.common.service.impl.SharedVirtualizerStoreFactory">
         <property name="maxSize" value="5000"></property>
         <property name="storeFactory">
@@ -1679,8 +1679,8 @@
         </property>
     </bean>
      -->
-    
-    
+
+
     <!-- resources bean for jpivot -->
     <bean id="jpivot-resources" class="com.tonbeller.tbutils.res.Resources">
         <property name="resourceBundle">
@@ -1690,11 +1690,11 @@
             <ref bean="encodingProvider"/>
         </property>
     </bean>
-    
+
     <!-- updater definitions so other bean files can add items to beans defined here,
-         instead of running tweakWar.js or manually hacking 
+         instead of running tweakWar.js or manually hacking
       -->
-    
+
     <!-- add hibernate hbm.xml -->
     <bean id="addHibernateConfig" class="com.jaspersoft.jasperserver.api.common.util.spring.GenericBeanUpdaterDefinition">
         <property name="order" value="10"/>
@@ -1702,7 +1702,7 @@
         <property name="propertyName" value="mappingResources"/>
         <property name="operation" value="append"/>
     </bean>
-    
+
     <!-- map an interface to a client impl -->
     <bean id="mapClientClass" class="com.jaspersoft.jasperserver.api.common.util.spring.GenericBeanUpdaterDefinition">
         <property name="order" value="10"/>
@@ -1718,7 +1718,7 @@
         <property name="propertyName" value="implementationClassMappings"/>
         <property name="operation" value="append"/>
     </bean>
-    
+
     <!-- add a message catalog -->
     <bean id="addMessageCatalog" class="com.jaspersoft.jasperserver.api.common.util.spring.GenericBeanUpdaterDefinition">
         <property name="order" value="10"/>
@@ -1736,7 +1736,7 @@
     </bean>
 
     <!-- export parameters -->
-    
+
     <bean id="xlsExportParameters" class="com.jaspersoft.jasperserver.api.engine.jasperreports.common.XlsExportParametersBean">
         <property name="detectCellType" value="true"/>
         <property name="onePagePerSheet" value="false"/>
@@ -1750,39 +1750,39 @@
         <property name="maximumRowsPerSheet" value="0"/>
         <property name="xlsFormatPatternsMap" ref="formatPatternsMap"/>
     </bean>
-    
+
     <bean id="odsExportParameters" class="com.jaspersoft.jasperserver.api.engine.jasperreports.common.OdsExportParametersBean" parent="xlsExportParameters">
     </bean>
-    
+
     <bean id="csvExportParameters" class="com.jaspersoft.jasperserver.api.engine.jasperreports.common.CsvExportParametersBean">
         <property name="fieldDelimiter" value=","/>
     </bean>
-    
+
     <bean id="pdfExportParameters" class="com.jaspersoft.jasperserver.api.engine.jasperreports.common.PdfExportParametersBean">
     </bean>
-    
+
     <bean id="txtExportParameters" class="com.jaspersoft.jasperserver.api.engine.jasperreports.common.TxtExportParametersBean">
         <property name="characterWidth" value="10"/>
         <property name="characterHeight" value="10"/>
         <property name="pageHeight" value="100"/>
         <property name="pageWidth" value="80"/>
     </bean>
-    
+
      <bean id="pptxExportParameters"  class="com.jaspersoft.jasperserver.api.engine.jasperreports.common.PptxExportParametersBean">
         <property name="ignoreHyperlink" value="false"/>
     </bean>
 
     <bean id="jsonMetadataExportParameters" class="com.jaspersoft.jasperserver.api.engine.jasperreports.common.JsonMetadataExportParametersBean">
     </bean>
-    
+
     <util:map id="formatPatternsMap">
         <!-- entry key="$ #,##0.00" value="$ #,##0.00"/-->
-        
+
         <entry key="MMM d, yyyy h:mm:ss a" value="MMM d, yyyy h:mm:ss AM/PM"/>
-        <entry key="h:mm:ss a" value="h:mm:ss AM/PM"/> 
-        <entry key="h:mm a" value="h:mm AM/PM"/> 
-        <entry key="h:mm:ss a z" value="h:mm:ss AM/PM"/> 
-    </util:map> 
+        <entry key="h:mm:ss a" value="h:mm:ss AM/PM"/>
+        <entry key="h:mm a" value="h:mm AM/PM"/>
+        <entry key="h:mm:ss a z" value="h:mm:ss AM/PM"/>
+    </util:map>
 
     <!-- end export parameters -->
 
@@ -1798,7 +1798,7 @@
                 <value>Europe/Berlin</value>
                 <value>Europe/Bucharest</value>
             </list>
-        </property> 
+        </property>
     </bean>
 
     <bean id="roleManagerService" class="com.jaspersoft.jasperserver.api.metadata.user.service.impl.RoleManagerServiceImpl">

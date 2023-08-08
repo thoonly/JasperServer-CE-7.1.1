@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
   Licensed to the Apache Software Foundation (ASF) under one or more
   contributor license agreements.  See the NOTICE file distributed with
@@ -18,8 +18,8 @@
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
-                      http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
-  version="4.0">
+                      http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+  version="3.1">
 
   <!-- ======================== Introduction ============================== -->
   <!-- This document defines default values for *all* web applications      -->
@@ -47,11 +47,6 @@
   <!--                                                                      -->
   <!--   fileEncoding        Encoding to be used to read static resources   -->
   <!--                       [platform default]                             -->
-  <!--                                                                      -->
-  <!--   useBomIfPresent     If a static file contains a byte order mark    -->
-  <!--                       (BOM), should this be used to determine the    -->
-  <!--                       file encoding in preference to fileEncoding.   -->
-  <!--                       [true]                                         -->
   <!--                                                                      -->
   <!--   input               Input buffer size (in bytes) when reading      -->
   <!--                       resources to be served.  [2048]                -->
@@ -143,9 +138,9 @@
   <!--                       pages.  See the jasper documentation for more  -->
   <!--                       information.                                   -->
   <!--                                                                      -->
-  <!--   compilerSourceVM    Compiler source VM. [1.8]                      -->
+  <!--   compilerSourceVM    Compiler source VM. [1.7]                      -->
   <!--                                                                      -->
-  <!--   compilerTargetVM    Compiler target VM. [1.8]                      -->
+  <!--   compilerTargetVM    Compiler target VM. [1.7]                      -->
   <!--                                                                      -->
   <!--   development         Is Jasper used in development mode? If true,   -->
   <!--                       the frequency at which JSPs are checked for    -->
@@ -237,14 +232,8 @@
   <!--   suppressSmap        Should the generation of SMAP info for JSR45   -->
   <!--                       debugging be suppressed?  [false]              -->
   <!--                                                                      -->
-  <!--   trimSpaces          Should template text that consists entirely of -->
-  <!--                       whitespace be removed from the output (true),  -->
-  <!--                       replaced with a single space (single) or left  -->
-  <!--                       unchanged (false)? Note that if a JSP page or  -->
-  <!--                       tag file specifies a trimDirectiveWhitespaces  -->
-  <!--                       value of true, that will take precedence over  -->
-  <!--                       this configuration setting for that page/tag.  -->
-  <!--                       [false]                                        -->
+  <!--   trimSpaces          Should white spaces in template text between   -->
+  <!--                       actions or directives be trimmed?  [false]     -->
   <!--                                                                      -->
   <!--   xpoweredBy          Determines whether X-Powered-By response       -->
   <!--                       header is added by generated servlet.  [false] -->
@@ -253,6 +242,9 @@
   <!--                       attribute values, should the rules in JSP.1.6  -->
   <!--                       for the escaping of quote characters be        -->
   <!--                       strictly applied? [true]                       -->
+  <!--                       The default can be changed with the            -->
+  <!--                       org.apache.jasper.compiler.Parser.             -->
+  <!--                       STRICT_QUOTE_ESCAPING system property.         -->
   <!--                                                                      -->
   <!--   quoteAttributeEL    When EL is used in an attribute value on a     -->
   <!--                       JSP page should the rules for quoting of       -->
@@ -346,33 +338,6 @@
   <!--                        If not set, then webAppRootDir is used.       -->
   <!--                        Recommended value: WEB-INF/cgi                -->
   <!--                                                                      -->
-  <!--  cmdLineArgumentsDecoded                                             -->
-  <!--                        Only used when enableCmdLineArguments is      -->
-  <!--                        true. The pattern that individual decoded     -->
-  <!--                        command line arguments must match else the    -->
-  <!--                        request will be rejected. This is to          -->
-  <!--                        work-around various issues when Java passes   -->
-  <!--                        the arguments to the OS. See the CGI How-To   -->
-  <!--                        for more details. The default varies by       -->
-  <!--                        platform.                                     -->
-  <!--                        Windows: [[a-zA-Z0-9\Q-_.\\/:\E]+]            -->
-  <!--                        Others:  [.*]                                 -->
-  <!--                        Note that internally the CGI Servlet treats   -->
-  <!--                        [.*] as a special case to improve performance -->
-  <!--                                                                      -->
-  <!--   cmdLineArgumentsEncoded                                            -->
-  <!--                        Only used when enableCmdLineArguments is      -->
-  <!--                        true. The pattern that individual encoded     -->
-  <!--                        command line arguments must match else the    -->
-  <!--                        request will be rejected. The default matches -->
-  <!--                        the allowed values defined by RFC3875.        -->
-  <!--                        [[a-zA-Z0-9\Q%;/?:@&,$-_.!~*'()\E]+]          -->
-  <!--                                                                      -->
-  <!--   enableCmdLineArguments                                             -->
-  <!--                        Are command line parameters generated from    -->
-  <!--                        the query string as per section 4.4 of 3875   -->
-  <!--                        RFC? [false]                                  -->
-  <!--                                                                      -->
   <!--   executable           Name of the executable used to run the        -->
   <!--                        script. [perl]                                -->
   <!--                                                                      -->
@@ -384,15 +349,6 @@
   <!--                        pattern.                                      -->
   <!--                        [ACCEPT[-0-9A-Z]*|CACHE-CONTROL|COOKIE|HOST|  -->
   <!--                         IF-[-0-9A-Z]*|REFERER|USER-AGENT]            -->
-  <!--                                                                      -->
-  <!--  environment-variable- An environment to be set for the execution    -->
-  <!--                        environment of the CGI script. The name of    -->
-  <!--                        variable is taken from the parameter name.    -->
-  <!--                        To configure an environment variable named    -->
-  <!--                        FOO, configure a parameter named              -->
-  <!--                        environment-variable-FOO. The parameter value -->
-  <!--                        is used as the environment variable value.    -->
-  <!--                        The default is no environment variables.      -->
   <!--                                                                      -->
   <!--   parameterEncoding    Name of parameter encoding to be used with    -->
   <!--                        CGI servlet.                                  -->
@@ -619,7 +575,6 @@
         <url-pattern>*.shtml</url-pattern>
     </filter-mapping>
 -->
-
 <filter>
   <filter-name>CorsFilter</filter-name>
   <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
@@ -658,7 +613,7 @@
   <!-- created sessions by modifying the value below.                       -->
 
     <session-config>
-        <session-timeout>30</session-timeout>
+        <session-timeout>10</session-timeout>
     </session-config>
 
 
@@ -2954,7 +2909,7 @@
     </mime-mapping>
     <mime-mapping>
         <extension>otf</extension>
-        <mime-type>font/otf</mime-type>
+        <mime-type>application/x-font-otf</mime-type>
     </mime-mapping>
     <mime-mapping>
         <!-- OpenDocument Drawing Template -->
@@ -3993,11 +3948,11 @@
     </mime-mapping>
     <mime-mapping>
         <extension>ttc</extension>
-        <mime-type>font/collection</mime-type>
+        <mime-type>application/x-font-ttf</mime-type>
     </mime-mapping>
     <mime-mapping>
         <extension>ttf</extension>
-        <mime-type>font/ttf</mime-type>
+        <mime-type>application/x-font-ttf</mime-type>
     </mime-mapping>
     <mime-mapping>
         <extension>ttl</extension>
@@ -4386,11 +4341,7 @@
     </mime-mapping>
     <mime-mapping>
         <extension>woff</extension>
-        <mime-type>font/woff</mime-type>
-    </mime-mapping>
-    <mime-mapping>
-        <extension>woff2</extension>
-        <mime-type>font/woff2</mime-type>
+        <mime-type>application/x-font-woff</mime-type>
     </mime-mapping>
     <mime-mapping>
         <extension>wpd</extension>
